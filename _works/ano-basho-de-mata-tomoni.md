@@ -6,7 +6,7 @@ accent_color: "#4C7A5A"    # 森を思わせる緑
 timeline_type: axis
 timeline_position: -50
 timeline_label: "50年前"
-summary: "治安維持隊の面々を追う、ネモフィラリバーシの50年前の物語。"
+summary: "ネモフィラリバーシから50年前、グレイスケイルポートを舞台にした話。"
 key_visual: /assets/images/works/ano-basho-de-mata-tomoni/key.jpg
 sections:
   - { number: "01", label: "STORY",      jp: "物語",   target: "story" }
@@ -14,5 +14,4 @@ sections:
   - { number: "03", label: "WORLD",      jp: "世界観", target: "world" }
   - { number: "04", label: "TIMELINE",   jp: "時系列", target: "timeline" }
   - { number: "05", label: "TERMS",      jp: "用語",   target: "terms" }
-  - { number: "06", label: "EXTRA",      jp: "おまけ", target: "extra" }
 ---
