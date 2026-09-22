@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+{% include head.html %}
+</head>
+<body{% if page.accent_color %} data-work="{{ page.slug }}" style="--accent: {{ page.accent_color }};"{% endif %}>
+
+{{ content }}
+
+<script>
+  // データ属性 [data-reveal] を持つ要素だけをスクロールで浮かび上がらせる。
+  // サイト全体を演出だらけにしないための、意図的に限定した使い方。
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

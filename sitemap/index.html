@@ -1,0 +1,22 @@
+---
+layout: default
+title: "サイトマップ"
+permalink: /sitemap/
+---
+<div class="max" style="padding-top:60px;padding-bottom:80px;max-width:680px;">
+  <div class="section-label">Sitemap</div>
+
+  <h4 style="font-family:var(--font-display);font-size:12px;letter-spacing:.1em;color:var(--gray);">作品</h4>
+  <ul>
+    {% for w in site.works %}
+    <li><a href="{{ w.url | relative_url }}">{{ w.title }}</a></li>
+    {% endfor %}
+  </ul>
+
+  <h4 style="font-family:var(--font-display);font-size:12px;letter-spacing:.1em;color:var(--gray);margin-top:30px;">その他</h4>
+  <ul>
+    <li><a href="{{ '/characters/' | relative_url }}">キャラクター一覧</a></li>
+    <li><a href="{{ '/terms/' | relative_url }}">用語集</a></li>
+    <li><a href="{{ '/about/' | relative_url }}">はじめての方へ</a></li>
+  </ul>
+</div>

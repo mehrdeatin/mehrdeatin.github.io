@@ -1,0 +1,69 @@
+---
+layout: default
+---
+
+<div class="hero">
+  <span class="glow a"></span>
+  <span class="glow b"></span>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Dark Fantasy / Ensemble Drama</div>
+    <h1>{{ site.title }}</h1>
+    <div class="en">{{ site.title_en }}</div>
+    <p>大鐘塔がそびえる異世界の街「メイドアイティッシュ」。そこに生きる人々の記録を、少しずつ翻訳していく——という体で綴っています。</p>
+  </div>
+  <div class="hero-scroll"><span>SCROLL</span><span class="bar"></span></div>
+</div>
+
+<div class="band tight lede-text" data-reveal>
+  <p>本サイトは複数の作品にまたがる、一つの世界観のアーカイブです。既に物語をご存知の方向けの内容が中心になります。</p>
+  <a class="about-link" href="{{ '/about/' | relative_url }}">はじめての方はこちら &nbsp;→</a>
+</div>
+
+<div class="band" data-reveal>
+  <div class="section-label">World Timeline</div>
+
+  {% assign axis_works = site.works | where: "timeline_type", "axis" | sort: "timeline_position" %}
+  {% assign satellite_works = site.works | where: "timeline_type", "satellite" %}
+
+  <div class="timeline-wrap">
+    <ol class="timeline-axis">
+      {% for work in axis_works %}
+      <li class="t-item{% if work.timeline_position == 0 %} now{% endif %}">
+        <span class="t-dot"></span>
+        <span class="t-when">{{ work.timeline_label }}</span>
+        <a href="{{ work.url | relative_url }}" class="t-work">{{ work.title }}</a>
+      </li>
+      {% endfor %}
+    </ol>
+
+    {% for work in satellite_works %}
+    <div class="timeline-satellite">
+      <span class="sat-tag">外伝</span>
+      <a href="{{ work.url | relative_url }}">{{ work.title }}</a>
+      <span class="sat-note">― {{ work.timeline_label }}</span>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="band" data-reveal>
+  <div class="section-label">Explore</div>
+  <div class="index-entries">
+    <a class="index-entry" href="{{ '/characters/' | relative_url }}">
+      <div><div class="num">01</div><h3>キャラクター一覧</h3><p>全作品から、登場人物を探す</p></div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="index-entry" href="{{ '/terms/' | relative_url }}">
+      <div><div class="num">02</div><h3>用語集</h3><p>世界観の言葉を辞書のように</p></div>
+      <div class="arrow">→</div>
+    </a>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div>
+    <div class="mark">{{ site.title }}</div>
+    <div style="margin-top:6px;">お問合せ:ツイッターDMまで</div>
+  </div>
+  <div><a href="{{ '/sitemap/' | relative_url }}">サイトマップ</a></div>
+</footer>

@@ -1,0 +1,39 @@
+---
+layout: default
+---
+<nav class="max" style="padding-top:26px;font-size:12.5px;color:var(--gray);">
+  <a href="{{ '/' | relative_url }}">{{ site.title }}</a> /
+  <a href="{{ '/characters/' | relative_url }}">キャラクター</a> /
+  {{ page.title }}
+</nav>
+
+<div class="char-profile">
+  <div>
+    {% if page.portrait %}
+    <div class="portrait-lg" style="background-image:url('{{ page.portrait | relative_url }}');"></div>
+    {% else %}
+    <div class="portrait-lg"></div>
+    {% endif %}
+  </div>
+
+  <div>
+    <h1>{{ page.title }}</h1>
+    {% if page.faction %}
+    <div class="factions">
+      {% for f in page.faction %}<span>{{ f }}</span>{% endfor %}
+    </div>
+    {% endif %}
+
+    {% if page.summary %}<p>{{ page.summary }}</p>{% endif %}
+
+    {{ content }}
+
+    {% if page.works %}
+    {% assign related_works_items = page.works %}
+    {% include related-list.html slugs=related_works_items collection=site.works label="登場作品" %}
+    {% endif %}
+
+    {% include related-list.html slugs=page.related_characters collection=site.characters label="関連キャラクター" %}
+    {% include related-list.html slugs=page.related_terms collection=site.terms label="関連用語" %}
+  </div>
+</div>

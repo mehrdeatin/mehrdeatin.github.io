@@ -1,0 +1,59 @@
+title: "メイドアイティシュの群像"
+title_en: "mehrdeatin no gunzou"
+description: "ダークファンタジー × 群像劇 × 架空神話 ― 世界観アーカイブ"
+
+# GitHub Pagesで公開する時、リポジトリ名がそのままURLの一部になります。
+# 例:https://ユーザー名.github.io/リポジトリ名/ の場合 → baseurl: "/リポジトリ名"
+# 独自ドメイン or ユーザー名.github.io リポジトリの場合は "" のままでOK
+baseurl: ""
+url: ""
+
+markdown: kramdown
+kramdown:
+  input: GFM
+permalink: pretty
+
+collections:
+  works:
+    output: true
+    permalink: /works/:path/
+  characters:
+    output: true
+    permalink: /characters/:slug/
+  terms:
+    output: true
+    permalink: /terms/:slug/
+
+defaults:
+  - scope:
+      path: ""
+      type: "works"
+    values:
+      layout: "work-portal"
+  - scope:
+      path: ""
+      type: "characters"
+    values:
+      layout: "character"
+  - scope:
+      path: ""
+      type: "terms"
+    values:
+      layout: "term"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+# 画像最適化(GitHub Actions)は assets/images/**/original/ に置いた元画像を
+# ビルド前に自動でリサイズ・WebP化して assets/images/**/optimized/ に出力する想定
+exclude:
+  - node_modules
+  - scripts
+  - package.json
+  - package-lock.json
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - assets/images/works/originals
+  - assets/images/characters/originals

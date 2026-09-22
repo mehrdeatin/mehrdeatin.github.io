@@ -1,0 +1,49 @@
+---
+layout: default
+title: "キャラクター一覧"
+permalink: /characters/
+---
+<div class="max" style="padding-top:46px;">
+  <div class="section-label">Characters</div>
+
+  <div class="char-toolbar" id="char-filter">
+    <a href="#" data-filter="all" class="active">すべて</a>
+    {% for work in site.works %}
+    <a href="#" data-filter="{{ work.slug }}">{{ work.title }}</a>
+    {% endfor %}
+  </div>
+
+  <div class="char-grid">
+    {% for c in site.characters %}
+    <a class="char-card" href="{{ c.url | relative_url }}" data-works="{{ c.works | join: ',' }}">
+      {% if c.portrait %}
+      <div class="portrait" style="background-image:url('{{ c.portrait | relative_url }}');"></div>
+      {% else %}
+      <div class="portrait"></div>
+      {% endif %}
+      <h3>{{ c.title }}</h3>
+      {% if c.faction %}<span class="faction">{{ c.faction | first }}</span>{% endif %}
+    </a>
+    {% endfor %}
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="mark">{{ site.title }}</div>
+  <div><a href="{{ '/' | relative_url }}">HOME</a></div>
+</footer>
+
+<script>
+  // 作品ごとの簡易絞り込み(演出ではなく実用のためのJS。派手なアニメーションは付けない)
+  document.getElementById('char-filter').addEventListener('click', function (e) {
+    if (e.target.tagName !== 'A') return;
+    e.preventDefault();
+    var filter = e.target.dataset.filter;
+    this.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+    e.target.classList.add('active');
+    document.querySelectorAll('.char-card').forEach(function (card) {
+      var works = (card.dataset.works || '').split(',');
+      card.style.display = (filter === 'all' || works.indexOf(filter) !== -1) ? '' : 'none';
+    });
+  });
+</script>

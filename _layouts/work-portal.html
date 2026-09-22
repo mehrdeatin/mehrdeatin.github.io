@@ -1,0 +1,35 @@
+---
+layout: default
+---
+<div class="portal">
+  <div class="portal-crumb"><a href="{{ '/' | relative_url }}">← {{ site.title }}</a></div>
+
+  {% if page.timeline_label %}
+  <div class="portal-eyebrow">{{ page.timeline_label }} ・ {{ page.title_en }}</div>
+  {% endif %}
+
+  {% if page.key_visual %}
+  <div class="portal-key-visual" style="background-image: url('{{ page.key_visual | relative_url }}');"></div>
+  {% endif %}
+
+  <h1>{{ page.title_en | default: page.title }}</h1>
+  <div class="jp-title">{{ page.title }}</div>
+
+  {% if page.sections %}
+  <nav class="portal-nav">
+    {% for s in page.sections %}
+    <a href="{{ page.url | relative_url }}{{ s.target }}/">
+      <span class="n">{{ s.number }}</span>{{ s.label }}<span class="jp">{{ s.jp }}</span>
+    </a>
+    {% endfor %}
+  </nav>
+  {% endif %}
+
+  <div class="portal-foot">MEHRDEATIN NO GUNZOU — WORLD ARCHIVE</div>
+</div>
+
+{% if content and content != "" %}
+<div class="band" style="color:#dedad0;">
+  {{ content }}
+</div>
+{% endif %}

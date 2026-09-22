@@ -1,0 +1,23 @@
+---
+layout: default
+---
+<nav class="max" style="padding-top:26px;font-size:12.5px;color:var(--gray);">
+  <a href="{{ '/' | relative_url }}">{{ site.title }}</a> /
+  <a href="{{ '/terms/' | relative_url }}">用語集</a> /
+  {{ page.title }}
+</nav>
+
+<div class="max" style="padding-top:30px;padding-bottom:80px;">
+  <div class="term-entry" style="border-bottom:none;">
+    <span class="term">{{ page.title }}</span>
+    {% if page.scope and page.scope != "world" %}
+      {% assign scoped_work = site.works | where: "slug", page.scope | first %}
+      <span class="scope-tag">{% if scoped_work %}{{ scoped_work.title }}限定{% else %}{{ page.scope }}{% endif %}</span>
+    {% endif %}
+    <div class="definition">{{ content }}</div>
+  </div>
+
+  {% include related-list.html slugs=page.related_terms collection=site.terms label="関連語" %}
+  {% include related-list.html slugs=page.related_characters collection=site.characters label="関連キャラクター" %}
+  {% include related-list.html slugs=page.related_works collection=site.works label="関連作品" %}
+</div>

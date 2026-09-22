@@ -1,0 +1,27 @@
+---
+layout: default
+title: "用語集"
+permalink: /terms/
+---
+<div class="max" style="padding-top:46px;">
+  <div class="section-label">Terms</div>
+</div>
+
+<div class="term-list">
+  {% assign sorted_terms = site.terms | sort: "title" %}
+  {% for t in sorted_terms %}
+  <div class="term-entry">
+    <a href="{{ t.url | relative_url }}" class="term">{{ t.title }}</a>
+    {% if t.scope and t.scope != "world" %}
+      {% assign scoped_work = site.works | where: "slug", t.scope | first %}
+      <span class="scope-tag">{% if scoped_work %}{{ scoped_work.title }}限定{% else %}{{ t.scope }}{% endif %}</span>
+    {% endif %}
+    <p class="definition">{{ t.content | strip_html | truncate: 80 }}</p>
+  </div>
+  {% endfor %}
+</div>
+
+<footer class="site-footer">
+  <div class="mark">{{ site.title }}</div>
+  <div><a href="{{ '/' | relative_url }}">HOME</a></div>
+</footer>

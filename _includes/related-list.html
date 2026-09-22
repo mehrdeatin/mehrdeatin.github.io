@@ -1,0 +1,22 @@
+{% comment %}
+  関連リンクをslugから解決して表示する共通パーツ。
+  使い方:
+  {% include related-list.html slugs=page.related_characters collection=site.characters label="関連キャラクター" %}
+
+  各コレクションの front matter には必ず `slug` と `title` を持たせてください。
+  slugが見つからなくても静かに無視されるだけなので(=ビルドは落ちない)、
+  関連リンクが表示されない時はまずslugのtypoを疑ってください。
+{% endcomment %}
+{% if include.slugs and include.slugs.size > 0 %}
+<div class="related-block">
+  <h4>{{ include.label }}</h4>
+  <ul>
+    {% for slug in include.slugs %}
+      {% assign item = include.collection | where: "slug", slug | first %}
+      {% if item %}
+        <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}

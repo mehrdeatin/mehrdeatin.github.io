@@ -1,0 +1,227 @@
+/* =====================================================================
+   メイドアイティシュの群像 ― メインスタイルシート
+   構成:
+   1. トークン(色・フォント) ― 新しい作品を増やす時もここは基本触らない
+   2. ベース(リセット・タイポ)
+   3. 共通コンポーネント(hero / timeline / portal-nav / index-entries / footer)
+   4. キャラクター・用語集ページ
+   5. レスポンシブ
+   ===================================================================== */
+
+/* ---------- 1. トークン ---------- */
+:root {
+  --white: #FAFAF7;
+  --black: #121212;
+  --red: #C4223A;      /* サイト全体のメインアクセント(アネモネ) */
+  --blue: #3E7CB1;     /* サブアクセント(ネモフィラ)。ネモリバのページではこれがメインになる */
+  --line: rgba(18, 18, 18, 0.12);
+  --line-on-black: rgba(250, 250, 247, 0.14);
+  --gray: #6b6b68;
+  --gray-on-black: #9a978d;
+
+  /* 作品ポータルはここを front matter の accent_color で上書きする
+     (例: body[data-work] へ style="--accent: #3E7CB1;" を出力) */
+  --accent: var(--blue);
+
+  --font-display: "Oswald", sans-serif;
+  --font-body: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", sans-serif;
+  --font-accent: "Shippori Mincho", serif;
+
+  --max-width: 980px;
+}
+
+/* ---------- 2. ベース ---------- */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font-body);
+  line-height: 1.85;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+.max { max-width: var(--max-width); margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+
+/* スクロール演出は data-reveal を付けた要素だけに限定する(サイト全体を演出だらけにしない) */
+[data-reveal] {
+  opacity: 0; transform: translateY(18px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+[data-reveal].in { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------- 3. 共通コンポーネント ---------- */
+
+/* --- Hero(HOME用) --- */
+.hero {
+  position: relative; min-height: 92vh; background: var(--black); color: var(--white);
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center; overflow: hidden; padding: 40px 24px;
+}
+.hero .glow { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .55; }
+.hero .glow.a { width: 380px; height: 380px; background: var(--red); top: -120px; left: -80px; }
+.hero .glow.b { width: 420px; height: 420px; background: var(--blue); bottom: -160px; right: -100px; }
+.hero-inner { position: relative; z-index: 2; }
+.hero-eyebrow {
+  font-family: var(--font-display); font-size: 12px; letter-spacing: .4em;
+  color: #d8d4c8; margin-bottom: 22px; text-transform: uppercase;
+  animation: fadeUp .8s ease both;
+}
+.hero h1 {
+  font-family: var(--font-accent); font-weight: 600; font-size: clamp(34px, 7vw, 58px);
+  margin: 0 0 14px; letter-spacing: .06em; animation: fadeUp .9s .1s ease both;
+}
+.hero .en {
+  font-family: var(--font-display); font-size: 12px; letter-spacing: .3em;
+  color: #8f8b7f; margin-bottom: 30px; animation: fadeUp .9s .2s ease both;
+}
+.hero p {
+  max-width: 46ch; margin: 0 auto; color: #cfccc2; font-size: 14.5px;
+  animation: fadeUp .9s .3s ease both;
+}
+.hero-scroll {
+  position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);
+  font-family: var(--font-display); font-size: 10.5px; letter-spacing: .3em; color: #8f8b7f;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.hero-scroll .bar { width: 1px; height: 30px; background: linear-gradient(var(--red), transparent); animation: scrollbar 1.8s ease infinite; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scrollbar {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+.band { max-width: var(--max-width); margin: 0 auto; padding: 90px 24px; }
+.band.tight { padding-top: 60px; padding-bottom: 60px; }
+.lede-text { text-align: center; }
+.lede-text p { font-size: 15px; color: #333; max-width: 52ch; margin: 0 auto 20px; }
+.about-link {
+  display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display);
+  font-size: 12px; letter-spacing: .15em; border-bottom: 1px solid var(--black); padding-bottom: 4px;
+}
+.about-link:hover { color: var(--red); border-color: var(--red); }
+
+.section-label {
+  font-family: var(--font-display); font-size: 12px; letter-spacing: .3em; color: var(--gray);
+  display: flex; align-items: center; gap: 14px; margin-bottom: 40px; text-transform: uppercase;
+}
+.section-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+/* --- Timeline(HOME用。50年前 - 現在 - 50年後 + 外伝の衛星) --- */
+.timeline-wrap { padding: 40px 0 10px; }
+.timeline-axis {
+  list-style: none; margin: 0; padding: 0; position: relative;
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+.timeline-axis::before { content: ""; position: absolute; top: 4.5px; left: 0; right: 0; height: 1px; background: var(--line); }
+.t-item { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; }
+.t-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--red); order: 1; }
+.t-item.now .t-dot { width: 11px; height: 11px; background: var(--black); }
+.t-when { order: 2; font-family: var(--font-display); font-size: 10.5px; letter-spacing: .2em; color: var(--gray); margin-top: 8px; }
+.t-work { order: 3; font-family: var(--font-accent); font-size: 15px; }
+.t-work:hover { color: var(--red); }
+
+/* 外伝(時間軸に乗らない作品)は控えめな脚注として分離する */
+.timeline-satellite {
+  margin-top: 40px; padding-top: 16px; border-top: 1px dashed var(--line);
+  display: flex; align-items: baseline; gap: 8px; font-size: 12px; color: var(--gray); flex-wrap: wrap;
+}
+.timeline-satellite .sat-tag {
+  font-family: var(--font-display); font-size: 9.5px; letter-spacing: .15em; color: var(--gray);
+  border: 1px solid var(--line); border-radius: 999px; padding: 2px 9px; flex-shrink: 0;
+}
+.timeline-satellite a { color: var(--gray); border-bottom: 1px dotted var(--gray); }
+.timeline-satellite a:hover { color: var(--blue); border-color: var(--blue); }
+.timeline-satellite .sat-note { color: var(--gray); opacity: .75; }
+
+/* --- Index entries(キャラ一覧・用語集への入口。HOME用) --- */
+.index-entries { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 70px; }
+.index-entry { background: var(--white); padding: 34px 30px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.index-entry .num { font-family: var(--font-display); font-size: 12px; color: var(--red); letter-spacing: .1em; }
+.index-entry h3 { font-family: var(--font-accent); font-size: 20px; margin: 6px 0 4px; }
+.index-entry p { font-size: 12px; color: var(--gray); margin: 0; }
+.index-entry .arrow { font-family: var(--font-display); font-size: 20px; color: var(--black); transition: transform .2s ease, color .2s ease; }
+.index-entry:hover .arrow { color: var(--red); transform: translateX(4px); }
+
+.site-footer {
+  border-top: 1px solid var(--line); padding: 40px 24px 70px; max-width: var(--max-width); margin: 0 auto;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; font-size: 12.5px; color: var(--gray);
+}
+.site-footer .mark { font-family: var(--font-accent); font-size: 14px; color: var(--black); }
+
+/* --- Work portal(作品ポータル。全作品共通、--accent だけ差し替え) --- */
+body[data-work] { background: var(--black); color: var(--white); }
+.portal { max-width: 640px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 70px 24px; text-align: center; position: relative; }
+.portal-crumb { position: absolute; top: 26px; left: 24px; font-size: 11.5px; color: var(--gray-on-black); letter-spacing: .05em; }
+.portal-crumb a:hover { color: var(--accent); }
+.portal-eyebrow { font-family: var(--font-display); font-size: 11px; letter-spacing: .35em; color: var(--accent); text-transform: uppercase; margin-bottom: 26px; }
+.portal h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(30px, 7vw, 44px); letter-spacing: .08em; margin: 0; line-height: 1.25; }
+.portal .jp-title { font-family: var(--font-accent); font-size: 15px; color: #cfccc2; margin: 10px 0 46px; letter-spacing: .1em; }
+.portal-key-visual {
+  width: 100%; aspect-ratio: 16/7; margin-bottom: 30px; background-size: cover; background-position: center;
+  background-color: #1a1a1a; border: 1px solid var(--line-on-black);
+}
+.portal-nav { width: 100%; border-top: 1px solid var(--line-on-black); }
+.portal-nav a { display: flex; align-items: center; gap: 20px; padding: 18px 6px; border-bottom: 1px solid var(--line-on-black); font-family: var(--font-display); letter-spacing: .12em; font-size: 14px; color: #dedad0; transition: color .2s ease, padding-left .2s ease; }
+.portal-nav a .n { color: var(--accent); font-size: 12px; min-width: 2.2em; text-align: left; }
+.portal-nav a .jp { margin-left: auto; font-family: var(--font-accent); font-size: 13px; color: #8f8b7f; }
+.portal-nav a:hover { color: #fff; padding-left: 12px; }
+.portal-nav a:hover .n { color: var(--red); }
+.portal-foot { margin-top: 40px; font-size: 11px; color: #6f6c62; letter-spacing: .1em; }
+
+/* ---------- 4. キャラクター・用語集ページ ---------- */
+
+/* キャラ一覧(全体 / 作品ごとの絞り込み) */
+.char-toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+.char-toolbar a {
+  font-family: var(--font-display); font-size: 11px; letter-spacing: .1em;
+  padding: 6px 14px; border: 1px solid var(--line); color: var(--gray);
+}
+.char-toolbar a.active, .char-toolbar a:hover { border-color: var(--red); color: var(--red); }
+
+.char-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.char-card { background: var(--white); padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.char-card .portrait { aspect-ratio: 3/4; background: linear-gradient(150deg, #e6e2d6, #cfc9b8); background-size: cover; background-position: top center; }
+.char-card h3 { font-family: var(--font-accent); font-size: 15px; margin: 0; }
+.char-card .faction { font-family: var(--font-display); font-size: 9.5px; letter-spacing: .1em; color: var(--red); }
+
+/* キャラ個別ページ */
+.char-profile { max-width: var(--max-width); margin: 0 auto; padding: 50px 24px 0; display: grid; grid-template-columns: 260px 1fr; gap: 46px; }
+.char-profile .portrait-lg { aspect-ratio: 3/4; background: linear-gradient(150deg, #e6e2d6, #cfc9b8); background-size: cover; background-position: top center; }
+.char-profile h1 { font-family: var(--font-accent); font-size: 30px; margin: 0 0 6px; }
+.char-profile .factions { display: flex; gap: 8px; margin-bottom: 18px; }
+.char-profile .factions span { font-family: var(--font-display); font-size: 10px; letter-spacing: .1em; color: var(--red); border: 1px solid var(--red); border-radius: 999px; padding: 2px 10px; }
+.related-block { margin-top: 34px; }
+.related-block h4 { font-family: var(--font-display); font-size: 11px; letter-spacing: .15em; color: var(--gray); text-transform: uppercase; margin: 0 0 10px; }
+.related-block ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.related-block a { font-size: 13px; border-bottom: 1px solid var(--line); }
+.related-block a:hover { color: var(--red); border-color: var(--red); }
+
+/* 用語集(辞書形式) */
+.term-list { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+.term-entry { padding: 26px 0; border-bottom: 1px solid var(--line); }
+.term-entry .term { font-family: var(--font-accent); font-size: 19px; }
+.term-entry .scope-tag { font-family: var(--font-display); font-size: 9px; letter-spacing: .1em; color: var(--blue); border: 1px solid var(--blue); border-radius: 999px; padding: 1px 8px; margin-left: 10px; vertical-align: middle; }
+.term-entry .definition { font-size: 14px; color: #333; margin: 10px 0 0; max-width: 68ch; }
+
+/* ---------- 5. レスポンシブ ---------- */
+@media (max-width: 640px) {
+  .timeline-axis { flex-direction: column; align-items: stretch; gap: 26px; }
+  .timeline-axis::before { top: 0; bottom: 0; left: 4.5px; right: auto; width: 1px; height: auto; }
+  .t-item { flex-direction: row; align-items: center; text-align: left; gap: 14px; }
+  .t-dot { order: 0; flex-shrink: 0; }
+  .t-when { order: 1; margin-top: 0; min-width: 56px; }
+  .t-work { order: 2; }
+  .timeline-satellite { flex-wrap: wrap; }
+
+  .index-entries { grid-template-columns: 1fr; }
+  .char-profile { grid-template-columns: 1fr; }
+}
