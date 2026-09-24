@@ -6,6 +6,7 @@ accent_color: "#D6478E"    # 現代的なネオンピンク
 timeline_type: axis
 timeline_position: 50
 timeline_label: "50年後"
+summary: "日常寄りの一幕。ネモフィラリバーシの50年後の街の空気を感じる話。"
 key_visual: /assets/images/works/kyou-no-irai-wa-nekosagashi/key.jpg
 format: oneshot
 sections:

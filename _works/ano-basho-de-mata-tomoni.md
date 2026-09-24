@@ -6,6 +6,7 @@ accent_color: "#4C7A5A"    # 森を思わせる緑
 timeline_type: axis
 timeline_position: -50
 timeline_label: "50年前"
+summary: "治安維持隊の面々を追う、ネモフィラリバーシの50年前の物語。"
 key_visual: /assets/images/works/ano-basho-de-mata-tomoni/key.jpg
 format: oneshot   # 短編1本
 sections:
