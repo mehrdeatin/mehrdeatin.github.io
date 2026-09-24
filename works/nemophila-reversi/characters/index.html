@@ -1,42 +1,6 @@
 ---
-layout: default
+layout: work-characters
 title: "ネモフィラリバーシ ― キャラクター"
 permalink: /works/nemophila-reversi/characters/
 work_slug: nemophila-reversi
 ---
-{% assign work = site.works | where: "slug", page.work_slug | first %}
-
-<nav class="max" style="padding-top:26px;font-size:12.5px;color:var(--gray);">
-  <a href="{{ '/' | relative_url }}">{{ site.title }}</a> /
-  <a href="{{ work.url | relative_url }}">{{ work.title }}</a> /
-  キャラクター
-</nav>
-
-<div class="max" style="padding-top:20px;">
-  <div class="section-label">Characters ― {{ work.title }}</div>
-
-  {% assign work_characters = site.characters | where_exp: "c", "c.works contains page.work_slug" %}
-  <div class="char-grid">
-    {% for c in work_characters %}
-    <a class="char-card" href="{{ c.url | relative_url }}">
-      {% if c.portrait %}
-      <div class="portrait" style="background-image:url('{{ c.portrait | relative_url }}');"></div>
-      {% else %}
-      <div class="portrait"></div>
-      {% endif %}
-      <h3>{{ c.title }}</h3>
-      {% if c.faction %}<span class="faction">{{ c.faction | first }}</span>{% endif %}
-    </a>
-    {% endfor %}
-  </div>
-
-  <p style="margin-top:40px;font-size:12.5px;color:var(--gray);">
-    この一覧は <code>_characters/*.md</code> の front matter にある <code>works: [{{ page.work_slug }}]</code> を
-    自動で拾って表示しています。新しいキャラを追加する時は、このページ自体は一切編集不要です。
-  </p>
-</div>
-
-<footer class="site-footer">
-  <div class="mark">{{ site.title }}</div>
-  <div><a href="{{ work.url | relative_url }}">← {{ work.title }}</a></div>
-</footer>

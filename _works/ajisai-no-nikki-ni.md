@@ -12,4 +12,7 @@ sections:
   - { number: "01", label: "STORY", jp: "物語", target: "story" }
   - { number: "02", label: "UTAU",  jp: "UTAU", target: "utau" }
   - { number: "03", label: "TERMS", jp: "用語", target: "terms" }
+format: oneshot
+chapters:
+  - { title: "紫陽花の日記に", status: unwritten, order: 1 }
 ---
