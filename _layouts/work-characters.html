@@ -1,0 +1,41 @@
+---
+layout: default
+---
+{% assign work = site.works | where: "slug", page.work_slug | first %}
+{% assign work_characters = site.characters | where_exp: "c", "c.works contains page.work_slug" %}
+
+<nav class="max" style="padding-top:26px;font-size:12.5px;color:var(--gray-on-black);">
+  <a href="{{ '/' | relative_url }}">{{ site.title }}</a> /
+  <a href="{{ work.url | relative_url }}">{{ work.title }}</a> /
+  CHARACTERS
+</nav>
+
+<div class="max" style="padding-top:20px;">
+  <div class="section-label" style="color:var(--gray-on-black);">Characters ― {{ work.title }}</div>
+
+  <div class="char-grid">
+    {% for c in work_characters %}
+    <a class="char-card" href="{{ c.url | relative_url }}">
+      {% if c.portrait %}
+      <div class="portrait" style="background-image:url('{{ c.portrait | relative_url }}');"></div>
+      {% else %}
+      <div class="portrait"></div>
+      {% endif %}
+      <h3>{{ c.title }}</h3>
+      {% if c.faction %}<span class="faction">{{ c.faction | first }}</span>{% endif %}
+    </a>
+    {% endfor %}
+  </div>
+
+  {% if work_characters.size == 0 %}
+  <p style="font-size:13px;color:var(--gray-on-black);">
+    まだこの作品に紐づくキャラクターがいません。<code>_characters/*.md</code> の
+    <code>works:</code> に <code>{{ page.work_slug }}</code> を追加すると、自動でここに表示されます。
+  </p>
+  {% endif %}
+</div>
+
+<footer class="site-footer" style="border-color:var(--line-on-black);color:var(--gray-on-black);">
+  <div class="mark" style="color:var(--white);">{{ work.title }}</div>
+  <div><a href="{{ work.url | relative_url }}">← ポータルに戻る</a></div>
+</footer>

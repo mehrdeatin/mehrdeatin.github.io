@@ -1,0 +1,53 @@
+---
+layout: default
+---
+{% assign work = site.works | where: "slug", page.work_slug | first %}
+
+<nav class="max" style="padding-top:26px;font-size:12.5px;color:var(--gray-on-black);">
+  <a href="{{ '/' | relative_url }}">{{ site.title }}</a> /
+  <a href="{{ work.url | relative_url }}">{{ work.title }}</a> /
+  WORLD
+</nav>
+
+<div class="max" style="padding-top:20px;padding-bottom:80px;max-width:680px;color:#dedad0;">
+  <div class="section-label" style="color:var(--gray-on-black);">World ― {{ work.title }}</div>
+
+  {% assign trimmed_content = content | strip %}
+  {% assign has_organizations = work.organizations.size %}
+
+  {% if trimmed_content != "" %}
+    {{ content }}
+  {% endif %}
+
+  {% if has_organizations > 0 %}
+    {% for org in work.organizations %}
+    <div class="org-block-inline">
+      <h3>{{ org.name }}</h3>
+      <p class="org-desc">{{ org.description }}</p>
+      {% if org.members %}
+      <dl class="org-members">
+        {% for m in org.members %}
+        <div class="org-entry">
+          <dt>{{ m.name }}</dt>
+          <dd>{{ m.description }}</dd>
+        </div>
+        {% endfor %}
+      </dl>
+      {% endif %}
+    </div>
+    {% endfor %}
+  {% endif %}
+
+  {% if trimmed_content == "" and has_organizations == 0 %}
+  <p style="font-size:13px;color:var(--gray-on-black);">
+    まだ世界観の情報がありません。<code>_works/{{ page.work_slug }}.md</code> の
+    <code>organizations:</code> に組織・勢力の情報を追加するか、本文(Markdown)に
+    直接書き足してください。
+  </p>
+  {% endif %}
+</div>
+
+<footer class="site-footer" style="border-color:var(--line-on-black);color:var(--gray-on-black);">
+  <div class="mark" style="color:var(--white);">{{ work.title }}</div>
+  <div><a href="{{ work.url | relative_url }}">← ポータルに戻る</a></div>
+</footer>

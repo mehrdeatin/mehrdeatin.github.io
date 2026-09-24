@@ -212,7 +212,58 @@ body[data-work] { background: var(--black); color: var(--white); }
 .term-entry .scope-tag { font-family: var(--font-display); font-size: 9px; letter-spacing: .1em; color: var(--blue); border: 1px solid var(--blue); border-radius: 999px; padding: 1px 8px; margin-left: 10px; vertical-align: middle; }
 .term-entry .definition { font-size: 14px; color: #333; margin: 10px 0 0; max-width: 68ch; }
 
-/* ---------- 5. レスポンシブ ---------- */
+/* ---------- 5. 作品セクションページ(STORY/WORLD/TIMELINE、ダークテーマ内) ---------- */
+
+/* STORY: 章立てリスト */
+.chapter-list-full { max-width: 100%; margin: 0; padding: 0; list-style: none; }
+.chapter-list-full li {
+  display: flex; align-items: baseline; gap: 16px; padding: 14px 0;
+  border-bottom: 1px solid var(--line-on-black); font-size: 14.5px; color: var(--white);
+}
+.chapter-list-full .ch-num { font-family: var(--font-display); font-size: 12px; color: var(--accent); min-width: 1.6em; }
+.chapter-list-full li.unwritten { color: var(--gray-on-black); }
+.chapter-list-full .ch-status { margin-left: auto; font-family: var(--font-display); font-size: 10px; letter-spacing: .1em; color: var(--gray-on-black); }
+.chapter-list-full .ch-status.wip { color: var(--red); }
+.chapter-note { margin-top: 20px; font-size: 12px; color: var(--gray-on-black); }
+.arc-heading {
+  font-family: var(--font-display); font-size: 12px; letter-spacing: .2em; color: var(--accent);
+  text-transform: uppercase; margin: 34px 0 4px;
+}
+.arc-heading:first-child { margin-top: 0; }
+
+/* STORY: 短編1本(oneshot)の見せ方 */
+.oneshot-block { padding: 30px 0; }
+.oneshot-title { font-family: var(--font-accent); font-size: 26px; color: var(--white); margin: 0 0 14px; }
+.oneshot-summary { font-size: 14.5px; color: #c8c4b8; max-width: 52ch; margin: 0 0 22px; }
+.oneshot-read {
+  display: inline-block; font-family: var(--font-display); font-size: 12px; letter-spacing: .15em;
+  color: var(--accent); border-bottom: 1px solid var(--accent); padding-bottom: 3px;
+}
+.oneshot-read:hover { color: var(--white); border-color: var(--white); }
+
+/* WORLD: 組織・勢力情報 */
+.org-block-inline { margin-top: 20px; padding-top: 30px; border-top: 1px solid var(--line-on-black); }
+.org-block-inline h3 { font-family: var(--font-accent); font-size: 18px; color: var(--white); margin: 0 0 8px; }
+.org-block-inline .org-desc { font-size: 13.5px; color: #b9b5a8; margin: 0 0 18px; }
+.org-members { margin: 0; }
+.org-members .org-entry {
+  display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 12px 0;
+  border-bottom: 1px solid var(--line-on-black); font-size: 13px;
+}
+.org-members .org-entry dt { font-family: var(--font-accent); color: var(--white); font-weight: 600; }
+.org-members .org-entry dd { margin: 0; color: #b9b5a8; }
+@media (max-width: 560px) {
+  .org-members .org-entry { grid-template-columns: 1fr; gap: 4px; }
+}
+
+/* TIMELINE: 作中の時系列 */
+.in-work-timeline { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--line-on-black); }
+.in-work-timeline li { position: relative; padding: 0 0 26px 22px; font-size: 14px; color: var(--white); }
+.in-work-timeline .dot {
+  position: absolute; left: -4.5px; top: 4px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+}
+
+/* ---------- 6. レスポンシブ ---------- */
 @media (max-width: 640px) {
   .timeline-axis { flex-direction: column; align-items: stretch; gap: 26px; }
   .timeline-axis::before { top: 0; bottom: 0; left: 4.5px; right: auto; width: 1px; height: auto; }

@@ -3,7 +3,17 @@
 <head>
 {% include head.html %}
 </head>
-<body{% if page.accent_color %} data-work="{{ page.slug }}" style="--accent: {{ page.accent_color }};"{% endif %}>
+{% assign body_work_slug = "" %}
+{% assign body_accent = "" %}
+{% if page.accent_color %}
+  {% assign body_work_slug = page.slug %}
+  {% assign body_accent = page.accent_color %}
+{% elsif page.work_slug %}
+  {% assign _work = site.works | where: "slug", page.work_slug | first %}
+  {% assign body_work_slug = page.work_slug %}
+  {% assign body_accent = _work.accent_color %}
+{% endif %}
+<body{% if body_work_slug != "" %} data-work="{{ body_work_slug }}" style="--accent: {{ body_accent }};"{% endif %}>
 
 {{ content }}
 

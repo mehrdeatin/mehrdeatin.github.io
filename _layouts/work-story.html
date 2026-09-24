@@ -1,0 +1,81 @@
+---
+layout: default
+---
+{% assign work = site.works | where: "slug", page.work_slug | first %}
+{% assign chapters = work.chapters | sort: "order" %}
+
+<nav class="max" style="padding-top:26px;font-size:12.5px;color:var(--gray-on-black);">
+  <a href="{{ '/' | relative_url }}">{{ site.title }}</a> /
+  <a href="{{ work.url | relative_url }}">{{ work.title }}</a> /
+  STORY
+</nav>
+
+<div class="max" style="padding-top:20px;padding-bottom:80px;max-width:680px;">
+  <div class="section-label" style="color:var(--gray-on-black);">Story ― {{ work.title }}</div>
+
+  {% if work.format == "oneshot" %}
+    {% comment %} 短編1本:章リストではなく、単一の作品として大きく見せる {% endcomment %}
+    {% assign ch = chapters | first %}
+    <div class="oneshot-block">
+      <h2 class="oneshot-title">{{ ch.title }}</h2>
+      {% if work.summary %}<p class="oneshot-summary">{{ work.summary }}</p>{% endif %}
+      {% if ch.status == "in_progress" %}
+        <span class="ch-status wip">執筆中</span>
+      {% elsif ch.status != "written" %}
+        <span class="ch-status">未執筆</span>
+      {% else %}
+        <a href="#" class="oneshot-read">読む →</a>
+      {% endif %}
+    </div>
+
+  {% else %}
+    {% comment %}
+      長編(シリーズ)向け:章立てリスト。
+      各章に arc: "第一部" のようなフィールドを付けると、自動でアーク見出しでグルーピングされる。
+      付けなければ今まで通りのフラットな一覧のまま。
+    {% endcomment %}
+    {% assign arcs = chapters | map: "arc" | compact %}
+
+    {% if arcs.size > 0 %}
+      {% assign grouped = chapters | group_by: "arc" %}
+      {% for group in grouped %}
+        <h3 class="arc-heading">{{ group.name | default: "―" }}</h3>
+        <ol class="chapter-list-full">
+          {% for ch in group.items %}
+          <li class="{% if ch.status != 'written' %}unwritten{% endif %}">
+            <span class="ch-num">{{ ch.order }}</span>
+            <span class="ch-title">{{ ch.title }}</span>
+            {% if ch.status == "in_progress" %}
+              <span class="ch-status wip">執筆中</span>
+            {% elsif ch.status != "written" %}
+              <span class="ch-status">未執筆</span>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ol>
+      {% endfor %}
+    {% else %}
+      <ol class="chapter-list-full">
+        {% for ch in chapters %}
+        <li class="{% if ch.status != 'written' %}unwritten{% endif %}">
+          <span class="ch-num">{{ ch.order }}</span>
+          <span class="ch-title">{{ ch.title }}</span>
+          {% if ch.status == "in_progress" %}
+            <span class="ch-status wip">執筆中</span>
+          {% elsif ch.status != "written" %}
+            <span class="ch-status">未執筆</span>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ol>
+      <p class="chapter-note">
+        全{{ chapters.size }}話(構想上はアニメ2クール相当のボリュームを想定。書けた分からここに追加していけます)
+      </p>
+    {% endif %}
+  {% endif %}
+</div>
+
+<footer class="site-footer" style="border-color:var(--line-on-black);color:var(--gray-on-black);">
+  <div class="mark" style="color:var(--white);">{{ work.title }}</div>
+  <div><a href="{{ work.url | relative_url }}">← ポータルに戻る</a></div>
+</footer>

@@ -1,0 +1,38 @@
+---
+layout: default
+---
+{% assign work = site.works | where: "slug", page.work_slug | first %}
+{% assign scoped_terms = site.terms | where: "scope", page.work_slug %}
+{% assign related_terms = site.terms | where_exp: "t", "t.related_works contains page.work_slug" %}
+{% assign work_terms = scoped_terms | concat: related_terms | uniq %}
+
+<nav class="max" style="padding-top:26px;font-size:12.5px;color:var(--gray-on-black);">
+  <a href="{{ '/' | relative_url }}">{{ site.title }}</a> /
+  <a href="{{ work.url | relative_url }}">{{ work.title }}</a> /
+  TERMS
+</nav>
+
+<div class="max" style="padding-top:20px;padding-bottom:80px;max-width:680px;">
+  <div class="section-label" style="color:var(--gray-on-black);">Terms ― {{ work.title }}</div>
+
+  {% for t in work_terms %}
+  <div class="term-entry" style="border-color:var(--line-on-black);">
+    <a href="{{ t.url | relative_url }}" class="term" style="color:var(--white);">{{ t.title }}</a>
+    <p class="definition" style="color:#c8c4b8;">{{ t.content | strip_html | truncate: 80 }}</p>
+  </div>
+  {% endfor %}
+
+  {% if work_terms.size == 0 %}
+  <p style="font-size:13px;color:var(--gray-on-black);">
+    まだこの作品に紐づく用語がありません。<code>_terms/*.md</code>の<code>scope</code>か
+    <code>related_works</code>に<code>{{ page.work_slug }}</code>を追加すると、自動でここに表示されます。
+  </p>
+  {% endif %}
+
+  <p style="margin-top:20px;"><a href="{{ '/terms/' | relative_url }}" style="font-size:12.5px;color:var(--accent);">世界共通の用語集を見る →</a></p>
+</div>
+
+<footer class="site-footer" style="border-color:var(--line-on-black);color:var(--gray-on-black);">
+  <div class="mark" style="color:var(--white);">{{ work.title }}</div>
+  <div><a href="{{ work.url | relative_url }}">← ポータルに戻る</a></div>
+</footer>
