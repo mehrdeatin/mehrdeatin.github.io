@@ -1,0 +1,9 @@
+---
+# front matterを付けることで、Jekyllにこのファイル内の {{ }} を処理させる
+# (site.url が空のうちは、そのままの文字列で出力されます。公開URLが決まったら
+#  _config.yml の url を埋めてください)
+---
+User-agent: *
+Allow: /
+
+Sitemap: {{ site.url }}{{ site.baseurl }}/sitemap.xml

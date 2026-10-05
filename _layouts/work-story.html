@@ -14,25 +14,26 @@ layout: default
   <div class="section-label" style="color:var(--gray-on-black);">Story ― {{ work.title }}</div>
 
   {% if work.format == "oneshot" %}
-    {% comment %} 短編1本:章リストではなく、単一の作品として大きく見せる {% endcomment %}
+    {% comment %} 短編1本:章リストではなく単一の作品として見せる。本文ファイルがあれば「読む」リンクが出る {% endcomment %}
     {% assign ch = chapters | first %}
+    {% assign body_file = site.chapters | where: "work_slug", work.slug | where: "order", ch.order | first %}
+    {% assign body_text = body_file.content | strip %}
     <div class="oneshot-block">
       <h2 class="oneshot-title">{{ ch.title }}</h2>
       {% if work.summary %}<p class="oneshot-summary">{{ work.summary }}</p>{% endif %}
-      {% if ch.status == "in_progress" %}
+      {% if body_file and body_text != "" and body_text != "ここに文章を入力" %}
+        <a href="{{ body_file.url | relative_url }}" class="oneshot-read">読む →</a>
+        {% if ch.status == "in_progress" %}<span class="ch-status wip" style="margin-left:14px;">執筆中</span>{% endif %}
+      {% elsif ch.status == "in_progress" %}
         <span class="ch-status wip">執筆中</span>
-      {% elsif ch.status != "written" %}
-        <span class="ch-status">未執筆</span>
       {% else %}
-        <a href="#" class="oneshot-read">読む →</a>
+        <span class="ch-status">未執筆</span>
       {% endif %}
     </div>
 
   {% else %}
     {% comment %}
-      長編(シリーズ)向け:章立てリスト。
-      各章に arc: "第一部" のようなフィールドを付けると、自動でアーク見出しでグルーピングされる。
-      付けなければ今まで通りのフラットな一覧のまま。
+      長編:章立てリスト。各章に arc: "第一部" を付けると、自動でアーク見出しでグルーピングされる。
     {% endcomment %}
     {% assign arcs = chapters | map: "arc" | compact %}
 
@@ -41,36 +42,14 @@ layout: default
       {% for group in grouped %}
         <h3 class="arc-heading">{{ group.name | default: "―" }}</h3>
         <ol class="chapter-list-full">
-          {% for ch in group.items %}
-          <li class="{% if ch.status != 'written' %}unwritten{% endif %}">
-            <span class="ch-num">{{ ch.order }}</span>
-            <span class="ch-title">{{ ch.title }}</span>
-            {% if ch.status == "in_progress" %}
-              <span class="ch-status wip">執筆中</span>
-            {% elsif ch.status != "written" %}
-              <span class="ch-status">未執筆</span>
-            {% endif %}
-          </li>
-          {% endfor %}
+          {% for ch in group.items %}{% include chapter-item.html work=work ch=ch %}{% endfor %}
         </ol>
       {% endfor %}
     {% else %}
       <ol class="chapter-list-full">
-        {% for ch in chapters %}
-        <li class="{% if ch.status != 'written' %}unwritten{% endif %}">
-          <span class="ch-num">{{ ch.order }}</span>
-          <span class="ch-title">{{ ch.title }}</span>
-          {% if ch.status == "in_progress" %}
-            <span class="ch-status wip">執筆中</span>
-          {% elsif ch.status != "written" %}
-            <span class="ch-status">未執筆</span>
-          {% endif %}
-        </li>
-        {% endfor %}
+        {% for ch in chapters %}{% include chapter-item.html work=work ch=ch %}{% endfor %}
       </ol>
-      <p class="chapter-note">
-        全{{ chapters.size }}話(構想上はアニメ2クール相当のボリュームを想定。書けた分からここに追加していけます)
-      </p>
+      <p class="chapter-note">全{{ chapters.size }}話</p>
     {% endif %}
   {% endif %}
 </div>

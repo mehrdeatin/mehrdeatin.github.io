@@ -1,0 +1,24 @@
+{% comment %}
+  章の一覧1行分。使い方:
+  {% include chapter-item.html work=work ch=ch %}
+
+  _chapters/ に「同じ work_slug かつ同じ order」のファイルがあれば、タイトルがリンクになる。
+  無ければタイトルの表示だけ(クリック不可)。
+{% endcomment %}
+{% assign body_file = site.chapters | where: "work_slug", include.work.slug | where: "order", include.ch.order | first %}
+{% assign body_text = body_file.content | strip %}
+{% assign has_text = false %}
+{% if body_file and body_text != "" and body_text != "ここに文章を入力" %}{% assign has_text = true %}{% endif %}
+<li class="{% if has_text %}readable{% else %}unwritten{% endif %}">
+  <span class="ch-num">{{ include.ch.order }}</span>
+  {% if has_text %}
+    <a class="ch-title" href="{{ body_file.url | relative_url }}">{{ include.ch.title }}</a>
+  {% else %}
+    <span class="ch-title">{{ include.ch.title }}</span>
+  {% endif %}
+  {% if include.ch.status == "in_progress" %}
+    <span class="ch-status wip">執筆中</span>
+  {% elsif include.ch.status != "written" and body_file == nil %}
+    <span class="ch-status">未執筆</span>
+  {% endif %}
+</li>

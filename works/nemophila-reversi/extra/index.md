@@ -12,5 +12,5 @@ work_slug: nemophila-reversi
 </nav>
 
 <div class="max" style="padding-top:20px;padding-bottom:80px;max-width:680px;color:#dedad0;">
-ここに小話・楽曲・イラストまとめなど本編外のコンテンツを追加していきます。
+ここに文章を入力
 </div>

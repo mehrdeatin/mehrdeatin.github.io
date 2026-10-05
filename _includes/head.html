@@ -1,7 +1,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{% if page.title %}{{ page.title }} ― {% endif %}{{ site.title }}</title>
-<meta name="description" content="{{ page.summary | default: site.description }}">
+
+{% comment %}
+  タイトル・OGP・Twitter Card・構造化データ(JSON-LD)は jekyll-seo-tag が自動生成します。
+  説明文は、そのページに `summary:` があればそれを使い、無ければ site.description にフォールバック。
+  (_works / _characters / _terms は summary を持っているので、二重にdescriptionを
+  書かなくてもSEOの説明文に反映されます)
+{% endcomment %}
+{% if page.summary %}
+  {% seo description=page.summary %}
+{% else %}
+  {% seo %}
+{% endif %}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

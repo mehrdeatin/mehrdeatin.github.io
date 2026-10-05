@@ -12,5 +12,5 @@ work_slug: ajisai-no-nikki-ni
 
 <div class="max" style="padding-top:20px;padding-bottom:80px;max-width:680px;color:#dedad0;">
   <div class="section-label" style="color:var(--gray-on-black);">UTAU</div>
-  <p>ここにUTAU音源・楽曲・調声に関する情報をまとめます(この作品だけの独自セクションです)。</p>
+  <p>ここに文章を入力</p>
 </div>

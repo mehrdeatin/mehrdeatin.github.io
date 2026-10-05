@@ -12,5 +12,5 @@ work_slug: kyou-no-irai-wa-nekosagashi
 </nav>
 
 <div class="max" style="padding-top:20px;padding-bottom:80px;max-width:680px;color:#dedad0;">
-本編外のコンテンツをここに追加していきます。
+ここに文章を入力
 </div>

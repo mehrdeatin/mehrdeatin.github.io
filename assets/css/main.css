@@ -263,6 +263,30 @@ body[data-work] { background: var(--black); color: var(--white); }
   position: absolute; left: -4.5px; top: 4px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
 }
 
+/* TIMELINE: 短編作品向けの「世界全体の時間軸のどこにあるか」ミニ表示 */
+.mini-timeline { display: flex; flex-direction: column; gap: 0; border-left: 1px solid var(--line-on-black); }
+.mini-t-item { position: relative; padding: 14px 0 14px 22px; display: flex; align-items: baseline; gap: 12px; }
+.mini-dot { position: absolute; left: -4.5px; top: 18px; width: 8px; height: 8px; border-radius: 50%; background: var(--line-on-black); }
+.mini-when { font-family: var(--font-display); font-size: 10.5px; letter-spacing: .15em; color: var(--gray-on-black); min-width: 60px; }
+.mini-work { font-family: var(--font-accent); font-size: 14px; color: #b9b5a8; }
+.mini-t-item.current .mini-dot { background: var(--accent); width: 10px; height: 10px; left: -5px; }
+.mini-t-item.current .mini-when { color: var(--accent); }
+.mini-t-item.current .mini-work { color: var(--white); font-weight: 600; }
+
+/* STORY: 本文があるお話はリンクとして見せる */
+.chapter-list-full li.readable .ch-title { border-bottom: 1px solid var(--accent); padding-bottom: 1px; transition: color .2s ease; }
+.chapter-list-full li.readable .ch-title:hover { color: var(--accent); }
+
+/* 各話の本文ページ */
+.chapter-page { max-width: 640px; padding-top: 50px; padding-bottom: 90px; }
+.chapter-page-num { font-family: var(--font-display); font-size: 12px; letter-spacing: .3em; color: var(--accent); }
+.chapter-page-title { font-family: var(--font-accent); font-size: clamp(24px, 5vw, 32px); margin: 8px 0 40px; color: var(--white); }
+.chapter-body { font-size: 16px; line-height: 2.1; color: #e2ded3; }
+.chapter-body p { margin: 0 0 1.6em; }
+.chapter-pager { display: flex; justify-content: space-between; gap: 16px; margin-top: 70px; padding-top: 22px; border-top: 1px solid var(--line-on-black); font-size: 13px; color: var(--gray-on-black); }
+.chapter-pager a:hover { color: var(--accent); }
+.chapter-pager .pager-list { font-family: var(--font-display); letter-spacing: .15em; font-size: 11px; }
+
 /* ---------- 6. レスポンシブ ---------- */
 @media (max-width: 640px) {
   .timeline-axis { flex-direction: column; align-items: stretch; gap: 26px; }

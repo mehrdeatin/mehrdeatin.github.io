@@ -9,4 +9,4 @@ related_characters: [pechika]
 related_terms: [tenshi]
 ---
 
-ここに経歴・設定など、キャラクターページを深掘りするための本文を書きます。
+ここに文章を入力

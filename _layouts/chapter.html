@@ -1,0 +1,37 @@
+---
+layout: default
+---
+{% assign work = site.works | where: "slug", page.work_slug | first %}
+{% assign siblings = site.chapters | where: "work_slug", page.work_slug | sort: "order" %}
+{% assign idx = 0 %}
+{% for s in siblings %}{% if s.order == page.order %}{% assign idx = forloop.index0 %}{% endif %}{% endfor %}
+{% assign prev_ch = nil %}
+{% if idx > 0 %}{% assign prev_idx = idx | minus: 1 %}{% assign prev_ch = siblings[prev_idx] %}{% endif %}
+{% assign next_idx = idx | plus: 1 %}
+{% assign next_ch = siblings[next_idx] %}
+
+<nav class="max" style="padding-top:26px;font-size:12.5px;color:var(--gray-on-black);">
+  <a href="{{ '/' | relative_url }}">{{ site.title }}</a> /
+  <a href="{{ work.url | relative_url }}">{{ work.title }}</a> /
+  <a href="{{ work.url | relative_url }}story/">STORY</a> /
+  {{ page.title }}
+</nav>
+
+<article class="max chapter-page">
+  <div class="chapter-page-num">{{ page.order }}</div>
+  <h1 class="chapter-page-title">{{ page.title }}</h1>
+  <div class="chapter-body">
+    {{ content }}
+  </div>
+
+  <div class="chapter-pager">
+    {% if prev_ch %}<a href="{{ prev_ch.url | relative_url }}">← {{ prev_ch.title }}</a>{% else %}<span></span>{% endif %}
+    <a href="{{ work.url | relative_url }}story/" class="pager-list">一覧</a>
+    {% if next_ch %}<a href="{{ next_ch.url | relative_url }}">{{ next_ch.title }} →</a>{% else %}<span></span>{% endif %}
+  </div>
+</article>
+
+<footer class="site-footer" style="border-color:var(--line-on-black);color:var(--gray-on-black);">
+  <div class="mark" style="color:var(--white);">{{ work.title }}</div>
+  <div><a href="{{ work.url | relative_url }}">← ポータルに戻る</a></div>
+</footer>

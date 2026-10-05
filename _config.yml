@@ -2,11 +2,26 @@ title: "メイドアイティシュの群像"
 title_en: "mehrdeatin no gunzou"
 description: "ダークファンタジー × 群像劇 × 架空神話 ― 世界観アーカイブ"
 
-# GitHub Pagesで公開する時、リポジトリ名がそのままURLの一部になります。
-# 例:https://ユーザー名.github.io/リポジトリ名/ の場合 → baseurl: "/リポジトリ名"
-# 独自ドメイン or ユーザー名.github.io リポジトリの場合は "" のままでOK
-baseurl: ""
-url: ""
+# ---- SEO関連 ----
+# jekyll-seo-tag / jekyll-sitemap の元になる設定。
+# url と baseurl は、実際にGitHub Pagesを公開してURLが確定してから必ず埋めてください
+# (ここが空のままだと、sitemap.xmlやOGPのURLが正しく生成されません)。
+url: ""       # 例: "https://ユーザー名.github.io"
+baseurl: ""   # 例: "" (ユーザー名.github.io リポジトリ) / "/リポジトリ名" (プロジェクトページ)
+lang: ja
+locale: ja_JP
+logo: /assets/images/works/nemophila-reversi/key.jpg  # OGP等のデフォルト画像。用意でき次第パスを差し替えてください
+author: ""            # 任意。個人名やハンドルネームを出したくなければ空のままでOK
+twitter:
+  username: ""        # 任意。Twitter Card用。使わないなら空のままでOK
+  card: summary_large_image
+social:
+  name: "メイドアイティシュの群像"
+  links: []
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
 markdown: kramdown
 kramdown:
@@ -23,6 +38,9 @@ collections:
   terms:
     output: true
     permalink: /terms/:slug/
+  chapters:
+    output: true
+    permalink: /works/:path/   # 実際は各ファイルのfront matterで permalink を明示するので、これはフォールバック
 
 defaults:
   - scope:
@@ -40,6 +58,11 @@ defaults:
       type: "terms"
     values:
       layout: "term"
+  - scope:
+      path: ""
+      type: "chapters"
+    values:
+      layout: "chapter"
   - scope:
       path: ""
     values:

@@ -56,7 +56,24 @@ sections:
 **slugのtypoはビルドエラーにならず、静かにリンクが表示されないだけ**なので、
 反映されない時はまずtypoを疑ってください。
 
-## 5. まだ作られていないもの(次のステップ)
+## 6. SEOについて
+
+`jekyll-seo-tag` と `jekyll-sitemap` を組み込み済みです(どちらもGitHub Pages公式の
+安全なプラグイン一覧に入っているものなので、追加の許可なども不要です)。
+
+- ページのタイトル・meta description・OGP・Twitter Card・構造化データは自動生成されます
+- `_works` / `_characters` / `_terms` は `summary:` を書いておけば、そのままSEOの説明文にも使われます
+- `sitemap.xml` は自動生成されます(`/sitemap/` という人間向けの一覧ページとは別物です)
+
+**1つだけ必ずやること**: `_config.yml` の `url` を、実際に公開されるGitHub PagesのURLに
+書き換えてください(空のままだとsitemap・OGPのURLが正しく生成されません)。
+
+```yaml
+url: "https://ユーザー名.github.io"
+baseurl: ""   # プロジェクトページ(https://ユーザー名.github.io/リポジトリ名/)の場合は "/リポジトリ名"
+```
+
+## 7. まだ作られていないもの(次のステップ)
 
 - 各作品ポータルの STORY / WORLD / TIMELINE / TERMS / EXTRA ページ
   (CHARACTERSページだけ `/works/nemophila-reversi/characters/` にサンプルがあります。
@@ -65,3 +82,16 @@ sections:
 - 画像の実データ(今はプレースホルダーの背景色のみ)
 
 ここから先は、このサンプルの書き方を真似しながら増やしていくフェーズです。
+
+## 4.5 お話(各話)の本文を書き始めた時
+
+1. `_chapters/` フォルダに、新しいMarkdownファイルを追加する
+   (`nemophila-reversi-06.md` をコピーして書き換えるのが早いです)
+2. front matter の `work_slug`(作品のslug)と `order`(何話目か)を、
+   `_works/` 側の `chapters:` の番号と合わせる
+3. `permalink:` は `/works/作品slug/story/話数2桁/` の形にする
+
+これだけで、STORYの一覧のその話のタイトルが**自動でクリックできるリンク**になります。
+本文ファイルが無い話は、今まで通りタイトルの表示だけ(クリック不可)です。
+タイトルを変えたい時は、`_works/` 側と本文ファイル側の両方を同じにしてください。
+
