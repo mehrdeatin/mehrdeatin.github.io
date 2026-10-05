@@ -291,6 +291,20 @@ body[data-work] .char-card h3 {color: var(--white);}
 .chapter-pager a:hover { color: var(--accent); }
 .chapter-pager .pager-list { font-family: var(--font-display); letter-spacing: .15em; font-size: 11px; }
 
+/*エクストラページ付箋*/
+.extra-page {padding-top: 20px;padding-bottom: 80px;max-width: 760px;color: #dedad0;}
+.extra-intro {margin-bottom: 40px;}
+.extra-label {font-size: 12px;letter-spacing: 0.15em;color: #8f8b82;}
+.extra-intro h1 {margin: 8px 0 12px;font-size: 28px;}
+.extra-intro p {font-size: 14px;line-height: 1.8;color: #aaa69e;}
+.sticky-board {display: grid;grid-template-columns: repeat(2, 1fr);gap: 28px;}
+.sticky-note {padding: 24px 22px 20px;background: #e7dfb5;color: #37352f;box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.25);transform: rotate(-1deg);}
+.sticky-note:nth-child(even) {transform: rotate(1.2deg);}
+.sticky-note h2 {margin: 0 0 14px;font-size: 18px;}
+.sticky-note p {margin: 0;font-size: 13px;line-height: 1.8;}
+.sticky-tags {margin-top: 18px;font-size: 11px;color: #77705e;}
+.sticky-tags span {margin-right: 8px;}
+
 /* ---------- 6. レスポンシブ ---------- */
 @media (max-width: 640px) {
   .timeline-axis { flex-direction: column; align-items: stretch; gap: 26px; }
