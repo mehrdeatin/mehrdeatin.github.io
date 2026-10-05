@@ -193,6 +193,10 @@ body[data-work] { background: var(--black); color: var(--white); }
 .char-card h3 { font-family: var(--font-accent); font-size: 15px; margin: 0; }
 .char-card .faction { font-family: var(--font-display); font-size: 9.5px; letter-spacing: .1em; color: var(--red); }
 
+/* 作品ページ内のキャラクターカード */
+body[data-work] .char-card {background: var(--black);color: var(--white);}
+body[data-work] .char-card h3 {color: var(--white);}
+
 /* キャラ個別ページ */
 .char-profile { max-width: var(--max-width); margin: 0 auto; padding: 50px 24px 0; display: grid; grid-template-columns: 260px 1fr; gap: 46px; }
 .char-profile .portrait-lg { aspect-ratio: 3/4; background: linear-gradient(150deg, #e6e2d6, #cfc9b8); background-size: cover; background-position: top center; }
