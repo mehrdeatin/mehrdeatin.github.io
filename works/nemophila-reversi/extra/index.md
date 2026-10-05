@@ -37,6 +37,64 @@ work_slug: nemophila-reversi
       </div>
     </article>
 
+    <article class="sticky-note">
+      <h2>ヨハン・ヴァン・シューマン</h2>
+      <p>
+        天使対策課の中でもさらに変わった集団、科捜研に所属する男。
+        自身の身の回りについて無頓着極まりなく、研究の身に没頭している
+        貧民街でスリを働いてきた双子に懐かれてしまった
+      </p>
+      <div class="sticky-tags">
+        <span>#日常</span>
+      </div>
+    </article>
+
+    <article class="sticky-note">
+      <h2>ケーゼとドナウ</h2>
+      <p>
+        ケーゼトルテは双子の姉、気性が荒いが面倒見がよく、めんどくさがりなヨハンとボーっとしているドナウに生活を強いている。
+        ドナウヴェレは双子の弟で、ケーゼがいれば他には何もいらない。基本は上の空で何を考えているかわからないが、ケーゼの為ならば、なんだって。
+      </p>
+      <div class="sticky-tags">
+        <span>#日常</span>
+      </div>
+    </article>
+
+    <article class="sticky-note">
+      <h2>街頭</h2>
+      <p>
+        天使は光を嫌う。昔は夜の外出が困難であったため、人々は街頭を設置し天使を遠ざけた。
+        今でも老人は「昔は灯が消えると外には人っ子一人おらなんだった」と語るのだ
+      </p>
+      <div class="sticky-tags">
+        <span>#日常</span>
+      </div>
+    </article>
+
+    <article class="sticky-note">
+      <h2>杭</h2>
+      <p>
+        線路の脇には等間隔で大きな杭が打ち込まれている。実際に効果があるのかは甚だ疑問だが、無い寄りマシであろう。
+      </p>
+      <div class="sticky-tags">
+        <span>#日常</span>
+      </div>
+    </article>
+
+    <article class="sticky-note">
+      <h2>美しき鉱石</h2>
+      <p>
+        グレイスケイルポートの近くの洞窟には「天使の墓場と呼ばれる場所がある。
+        その洞窟内には、天使の死骸とされる逸話の残る美しい青い鉱石が数多く存在している。
+        かつてこの地の産業の一つであったが、50年前の事件を皮切りに閉山。現在はネモフィラの同行があっても入ることは困難な地になってしまった。
+        <br>「綺麗な青ですね」
+        <br>「三人死んでるわ」
+      </p>
+      <div class="sticky-tags">
+        <span>#日常</span>
+      </div>
+    </article>
+
   </div>
 
 </div>
