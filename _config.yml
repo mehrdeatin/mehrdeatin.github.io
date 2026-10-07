@@ -41,6 +41,8 @@ collections:
   chapters:
     output: true
     permalink: /works/:path/   # 実際は各ファイルのfront matterで permalink を明示するので、これはフォールバック
+  chapters:
+    output: true   # 各話の本文ページ。URLは各ファイルの permalink で指定する
 
 defaults:
   - scope:
@@ -58,6 +60,11 @@ defaults:
       type: "terms"
     values:
       layout: "term"
+  - scope:
+      path: ""
+      type: "chapters"
+    values:
+      layout: "chapter"
   - scope:
       path: ""
       type: "chapters"

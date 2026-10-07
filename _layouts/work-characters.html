@@ -17,7 +17,7 @@ layout: default
     {% for c in work_characters %}
     <a class="char-card" href="{{ c.url | relative_url }}">
       {% if c.portrait %}
-      <div class="portrait" style="background-image:url('{{ c.portrait | relative_url }}');"></div>
+      <div class="portrait"><img src="{{ c.portrait | relative_url }}" alt="{{ c.title }}" loading="lazy"></div>
       {% else %}
       <div class="portrait"></div>
       {% endif %}

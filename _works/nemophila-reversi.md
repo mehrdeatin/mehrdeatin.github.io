@@ -6,7 +6,7 @@ accent_color: "#3E7CB1"
 timeline_type: axis        # axis(3点の主軸に乗る) or satellite(軸外)
 timeline_position: 0       # -50 / 0 / 50 など。axisの並び順に使う
 timeline_label: "現在"
-summary: "三つの視点の中で、中心になる物語。神様のもとで翻弄される子供たちの話。"
+summary: "ルーンの視点から始まり、複数の人物を経てソリシアへ。最後に再びルーンへ戻る群像劇。"
 key_visual: /assets/images/works/nemophila-reversi/key.jpg
 format: series   # series(章が積み重なる長編) or oneshot(短編1本)
 sections:

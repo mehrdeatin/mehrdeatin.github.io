@@ -9,7 +9,7 @@ layout: default
   {% endif %}
 
   {% if page.key_visual %}
-  <div class="portal-key-visual" style="background-image: url('{{ page.key_visual | relative_url }}');"></div>
+  <div class="portal-key-visual"><img src="{{ page.key_visual | relative_url }}" alt="{{ page.title }} キービジュアル" loading="eager"></div>
   {% endif %}
 
   <h1>{{ page.title_en | default: page.title }}</h1>

@@ -10,7 +10,7 @@ layout: default
 <div class="char-profile">
   <div>
     {% if page.portrait %}
-    <div class="portrait-lg" style="background-image:url('{{ page.portrait | relative_url }}');"></div>
+    <div class="portrait-lg"><img src="{{ page.portrait | relative_url }}" alt="{{ page.title }}" loading="lazy"></div>
     {% else %}
     <div class="portrait-lg"></div>
     {% endif %}

@@ -17,7 +17,7 @@ permalink: /characters/
     {% for c in site.characters %}
     <a class="char-card" href="{{ c.url | relative_url }}" data-works="{{ c.works | join: ',' }}">
       {% if c.portrait %}
-      <div class="portrait" style="background-image:url('{{ c.portrait | relative_url }}');"></div>
+      <div class="portrait"><img src="{{ c.portrait | relative_url }}" alt="{{ c.title }}" loading="lazy"></div>
       {% else %}
       <div class="portrait"></div>
       {% endif %}
