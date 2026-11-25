@@ -5,6 +5,10 @@ works: [nemophila-reversi]
 faction: ["天使対策課"]
 portrait: /assets/images/characters/pechika.jpg
 summary: "ルーンと同期の犬科獣人。怯えやすい一方、仲間を気にかける世話焼きな一面を持つ。"
+cv: "しぃざぁ 様"
+age: "16歳"
+height: "173cm"
+birthday: "04.01"
 related_characters: [rune, solicia, grel]
 related_terms: [tenshitaisakuka]
 ---
