@@ -2,7 +2,7 @@
 title: "エリス"
 slug: elis
 works: [nemophila-reversi]
-faction: ["天", "使", "対", "策", "課"]
+faction: ["天使対策課"]
 summary: "天使対策課の班長。相手の意思を尊重しながら、必要な場面では確かな判断を下す。"
 related_characters: [rune, solicia, yugurias]
 related_terms: [tenshitaisakuka]

@@ -2,7 +2,7 @@
 title: "イスズ"
 slug: isuzu
 works: [nemophila-reversi]
-faction: ["天", "使", "対", "策", "課"]
+faction: ["天使対策課"]
 summary: "所轄の天使対策課を率いる人物。ネモフィラをめぐる騒動の中心に立つ。"
 related_characters: [grel, elis, solicia]
 related_terms: [tenshitaisakuka]

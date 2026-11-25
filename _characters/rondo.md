@@ -2,7 +2,7 @@
 title: "ロンド"
 slug: rondo
 works: [nemophila-reversi]
-faction: ["大", "鐘", "塔"]
+faction: ["大鐘塔"]
 summary: "大鐘塔の図書館を一人で管理する司書。この世界の知識が集まる場所を守っている。"
 related_characters: [yugurias, akagami]
 related_terms: [taishoutou]

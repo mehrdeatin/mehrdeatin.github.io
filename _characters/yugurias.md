@@ -1,8 +1,8 @@
 ---
-title: "ユーグリアス司教"
+title: "ユーグリアス"
 slug: yugurias
 works: [nemophila-reversi]
-faction: ["大", "鐘", "塔"]
+faction: ["大鐘塔"]
 summary: "塔神教の司教。大鐘塔に属し、ソリシアが入った孤児院の運営にも関わっている。"
 related_characters: [elis, solicia, akagami, rondo]
 related_terms: [taishoutou, toujinkyou]

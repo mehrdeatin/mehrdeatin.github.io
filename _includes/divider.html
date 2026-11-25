@@ -1,0 +1,14 @@
+{% comment %}
+  セクション区切りの装飾(自作SVG。外部素材なし・ライセンス問題なし)。
+  尖塔と細い罫線だけの控えめな意匠。色は currentColor なので親の color で変わる。
+  使い方: {% include divider.html %}
+{% endcomment %}
+<div class="divider" role="presentation" aria-hidden="true">
+  <svg viewBox="0 0 240 28" width="240" height="28" focusable="false">
+    <line x1="0" y1="20" x2="96" y2="20" stroke="currentColor" stroke-width="1"/>
+    <line x1="144" y1="20" x2="240" y2="20" stroke="currentColor" stroke-width="1"/>
+    <path d="M120 2 L124 20 L116 20 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+    <path d="M108 20 L110 12 L113 20 M127 20 L130 12 L132 20" fill="none" stroke="currentColor" stroke-width="1"/>
+    <circle cx="120" cy="25" r="1.4" fill="currentColor"/>
+  </svg>
+</div>

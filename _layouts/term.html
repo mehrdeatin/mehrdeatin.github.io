@@ -14,6 +14,7 @@ layout: default
       {% assign scoped_work = site.works | where: "slug", page.scope | first %}
       <span class="scope-tag">{% if scoped_work %}{{ scoped_work.title }}限定{% else %}{{ page.scope }}{% endif %}</span>
     {% endif %}
+    {% if page.kind == "setting" %}<span class="scope-tag">公開設定資料</span>{% endif %}
     <div class="definition">{{ content }}</div>
   </div>
 

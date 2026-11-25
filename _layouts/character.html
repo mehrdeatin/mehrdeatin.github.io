@@ -1,39 +1,71 @@
 ---
 layout: default
 ---
+{% comment %}
+  キャラクター個別ページ。
+  プロフィール項目(name_en / cv / age / height / birthday / species / affiliation / position / weapon)は
+  値が入っているものだけ出力する(ラベルも出さない)。
+  Markdown本文({{ content }})はファーストビューの外、詳細エリアに置く。
+{% endcomment %}
+{% assign body_text = content | strip %}
+{% assign has_portrait = false %}
+{% if page.portrait and page.portrait != "" %}{% assign has_portrait = true %}{% endif %}
+
 <nav class="max" style="padding-top:26px;font-size:12.5px;color:var(--gray);">
   <a href="{{ '/' | relative_url }}">{{ site.title }}</a> /
   <a href="{{ '/characters/' | relative_url }}">キャラクター</a> /
   {{ page.title }}
 </nav>
 
-<div class="char-profile">
-  <div>
-    {% if page.portrait %}
-    <div class="portrait-lg"><img src="{{ page.portrait | relative_url }}" alt="{{ page.title }}" loading="lazy"></div>
-    {% else %}
-    <div class="portrait-lg"></div>
-    {% endif %}
+<section class="char-hero{% unless has_portrait %} char-hero--no-portrait{% endunless %}">
+  {% if has_portrait %}
+  <div class="char-hero-visual">
+    <img src="{{ page.portrait | relative_url }}" alt="{{ page.title }}">
   </div>
+  {% endif %}
 
-  <div>
+  <div class="char-panel">
     <h1>{{ page.title }}</h1>
-    {% if page.faction %}
+
+    {% if page.faction and page.faction.size > 0 %}
     <div class="factions">
       {% for f in page.faction %}<span>{{ f }}</span>{% endfor %}
     </div>
     {% endif %}
 
-    {% if page.summary %}<p>{{ page.summary }}</p>{% endif %}
+    <dl class="char-data">
+      {% if page.name_en and page.name_en != "" %}<div><dt>NAME</dt><dd>{{ page.name_en }}</dd></div>{% endif %}
+      {% if page.cv and page.cv != "" %}<div><dt>CV / VOICE</dt><dd>{{ page.cv }}</dd></div>{% endif %}
+      {% if page.age and page.age != "" %}<div><dt>AGE</dt><dd>{{ page.age }}</dd></div>{% endif %}
+      {% if page.height and page.height != "" %}<div><dt>HEIGHT</dt><dd>{{ page.height }}</dd></div>{% endif %}
+      {% if page.birthday and page.birthday != "" %}<div><dt>BIRTHDAY</dt><dd>{{ page.birthday }}</dd></div>{% endif %}
+      {% if page.species and page.species != "" %}<div><dt>SPECIES</dt><dd>{{ page.species }}</dd></div>{% endif %}
+      {% if page.affiliation and page.affiliation != "" %}<div><dt>AFFILIATION</dt><dd>{{ page.affiliation }}</dd></div>{% endif %}
+      {% if page.position and page.position != "" %}<div><dt>POSITION</dt><dd>{{ page.position }}</dd></div>{% endif %}
+      {% if page.weapon and page.weapon != "" %}<div><dt>WEAPON</dt><dd>{{ page.weapon }}</dd></div>{% endif %}
+    </dl>
 
-    {{ content }}
-
-    {% if page.works %}
-    {% assign related_works_items = page.works %}
-    {% include related-list.html slugs=related_works_items collection=site.works label="登場作品" %}
+    {% if page.summary and page.summary != "" %}
+    <div class="char-summary">
+      <h2>PROFILE</h2>
+      <p>{{ page.summary }}</p>
+    </div>
     {% endif %}
-
-    {% include related-list.html slugs=page.related_characters collection=site.characters label="関連キャラクター" %}
-    {% include related-list.html slugs=page.related_terms collection=site.terms label="関連用語" %}
   </div>
+</section>
+
+{% if body_text != "" %}
+<section class="char-detail max">
+  {{ content }}
+</section>
+{% endif %}
+
+<div class="char-related max">
+  {% if page.works %}
+  {% assign related_works_items = page.works %}
+  {% include related-list.html slugs=related_works_items collection=site.works label="登場作品" %}
+  {% endif %}
+
+  {% include related-list.html slugs=page.related_characters collection=site.characters label="関連キャラクター" %}
+  {% include related-list.html slugs=page.related_terms collection=site.terms label="関連用語" %}
 </div>

@@ -1,5 +1,5 @@
 /* =====================================================================
-   メイドアイティッシュの群像 ― メインスタイルシート
+   メイドアイティシュの群像 ― メインスタイルシート
    構成:
    1. トークン(色・フォント) ― 新しい作品を増やす時もここは基本触らない
    2. ベース(リセット・タイポ)
@@ -324,3 +324,66 @@ body[data-work] { background: var(--black); color: var(--white); }
   .char-panel { padding: 28px 22px; }
   .char-data > div { grid-template-columns: 92px 1fr; gap: 10px; }
 }
+
+
+/* ---------- 7. 世界観の演出(控えめ・依存なし) ----------
+   方針: 閲覧ページ(キャラ・用語・本文)には足さない。HOMEと入口まわりだけ。
+   すべて自作CSS/SVG。外部素材なし。prefers-reduced-motion では止める。 */
+
+/* ヒーロー: 古い紙のような粒状ノイズを極薄く重ねる */
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* ヒーロー見出し: 活版の刷りのように、字間が詰まりながら現れる */
+@keyframes inkIn {
+  from { opacity: 0; letter-spacing: .24em; filter: blur(3px); }
+  to   { opacity: 1; letter-spacing: .06em; filter: blur(0); }
+}
+.hero h1 { animation: inkIn 1.4s .1s cubic-bezier(.2,.7,.2,1) both; }
+
+/* セクション区切り(_includes/divider.html) */
+.divider { display: flex; justify-content: center; color: var(--gray); opacity: .55; margin: 0 auto; padding: 6px 24px; }
+.divider svg { max-width: 100%; height: auto; }
+
+/* 入口カード: 下線が左から引かれる */
+.index-entry { position: relative; }
+.index-entry::after {
+  content: ""; position: absolute; left: 30px; right: 30px; bottom: 0; height: 1px;
+  background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform .35s ease;
+}
+.index-entry:hover::after, .index-entry:focus-visible::after { transform: scaleX(1); }
+.index-entry:focus-visible { outline: 1px solid var(--red); outline-offset: -1px; }
+
+/* 画像の出典キャプション(_includes/credit.html) */
+.credit { font-size: 11px; line-height: 1.6; color: var(--gray); margin: 8px 0 0; letter-spacing: .02em; }
+.credit a { border-bottom: 1px dotted currentColor; }
+body[data-work] .credit { color: var(--gray-on-black); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 { animation: none; }
+  .index-entry::after { transition: none; }
+}
+
+/* ---------- 8. 用語ページ本文(見出し・表・引用。一覧の抜粋には影響しない) ---------- */
+.term-entry .definition h2 {
+  font-family: var(--font-display); font-size: 16px; letter-spacing: .1em;
+  margin: 2.4em 0 .8em; padding-left: 12px; border-left: 3px solid var(--red);
+}
+.term-entry .definition h2:first-child { margin-top: 0; }
+.term-entry .definition h3 { font-family: var(--font-accent); font-size: 15px; margin: 1.8em 0 .5em; }
+.term-entry .definition p { margin: 0 0 1.1em; }
+.term-entry .definition ul { margin: 0 0 1.2em; padding-left: 1.3em; }
+.term-entry .definition li { margin-bottom: .4em; }
+.term-entry .definition blockquote {
+  margin: 0 0 1.6em; padding: 10px 16px; border-left: 3px solid var(--red);
+  background: rgba(196, 34, 58, .05); color: #333;
+}
+.term-entry .definition blockquote p { margin: 0; }
+.term-entry .definition table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 0 0 1.8em; }
+.term-entry .definition th, .term-entry .definition td {
+  text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top;
+}
+.term-entry .definition th { font-family: var(--font-display); font-size: 11px; letter-spacing: .12em; color: var(--gray); font-weight: 500; }
+.term-entry .definition td:first-child { white-space: nowrap; color: var(--gray); width: 6.5em; }

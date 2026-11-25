@@ -2,7 +2,7 @@
 title: "ベンノ"
 slug: benno
 works: [nemophila-reversi]
-faction: ["ネ", "モ", "フ", "ィ", "ラ"]
+faction: ["ネモフィラ"]
 summary: "ソリシアとユーリの孤児院時代からの同期。現在は故人。"
 related_characters: [solicia, yuri]
 related_terms: [tenshitaisakuka]

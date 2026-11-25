@@ -2,7 +2,7 @@
 title: "ペチカ"
 slug: pechika
 works: [nemophila-reversi]
-faction: ["天", "使", "対", "策", "課"]
+faction: ["天使対策課"]
 portrait: /assets/images/characters/pechika.jpg
 summary: "ルーンと同期の犬科獣人。怯えやすい一方、仲間を気にかける世話焼きな一面を持つ。"
 related_characters: [rune, solicia, grel]

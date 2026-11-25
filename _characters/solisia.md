@@ -5,7 +5,7 @@ works: [nemophila-reversi]
 faction: ["天使対策課"]
 portrait: /assets/images/characters/solisia.jpg
 summary: "後編の主人公、ヤギのような生物の獣人。304小隊の副隊長だが、過去の出来事からPTSDを患っている。"
-related_characters: [rune]
+related_characters: [rune, pechca]
 related_terms: []
 ---
 - 名前：ソリシア

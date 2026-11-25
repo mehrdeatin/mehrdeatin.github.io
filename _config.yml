@@ -1,4 +1,4 @@
-title: "メイドアイティッシュの群像"
+title: "メイドアイティシュの群像"
 title_en: "mehrdeatin no gunzou"
 description: "ダークファンタジー × 群像劇 × 架空神話 ― 世界観アーカイブ"
 
@@ -6,7 +6,7 @@ description: "ダークファンタジー × 群像劇 × 架空神話 ― 世�
 # jekyll-seo-tag / jekyll-sitemap の元になる設定。
 # url と baseurl は、実際にGitHub Pagesを公開してURLが確定してから必ず埋めてください
 # (ここが空のままだと、sitemap.xmlやOGPのURLが正しく生成されません)。
-url: "https://mehrdeatin.github.io"
+url: ""       # 例: "https://ユーザー名.github.io"
 baseurl: ""   # 例: "" (ユーザー名.github.io リポジトリ) / "/リポジトリ名" (プロジェクトページ)
 lang: ja
 locale: ja_JP
@@ -16,7 +16,7 @@ twitter:
   username: ""        # 任意。Twitter Card用。使わないなら空のままでOK
   card: summary_large_image
 social:
-  name: "メイドアイティッシュの群像"
+  name: "メイドアイティシュの群像"
   links: []
 
 plugins:
@@ -39,6 +39,9 @@ collections:
     output: true
     permalink: /terms/:slug/
   chapters:
+    output: true
+    permalink: /works/:path/   # 実際は各ファイルのfront matterで permalink を明示するので、これはフォールバック
+  chapters:
     output: true   # 各話の本文ページ。URLは各ファイルの permalink で指定する
 
 defaults:
@@ -57,6 +60,11 @@ defaults:
       type: "terms"
     values:
       layout: "term"
+  - scope:
+      path: ""
+      type: "chapters"
+    values:
+      layout: "chapter"
   - scope:
       path: ""
       type: "chapters"

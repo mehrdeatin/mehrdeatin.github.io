@@ -2,7 +2,7 @@
 title: "ルーン"
 slug: rune
 works: [nemophila-reversi]
-faction: ["天", "使", "対", "策", "課"]
+faction: ["天使対策課"]
 portrait: /assets/images/characters/rune.jpg
 summary: "外の世界を知るため、塔を出てネモフィラへやってきた異形頭の少女。"
 related_characters: [pechika, solicia, elis]

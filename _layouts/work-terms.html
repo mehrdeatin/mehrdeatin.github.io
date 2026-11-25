@@ -18,7 +18,7 @@ layout: default
   {% for t in work_terms %}
   <div class="term-entry" style="border-color:var(--line-on-black);">
     <a href="{{ t.url | relative_url }}" class="term" style="color:var(--white);">{{ t.title }}</a>
-    <p class="definition" style="color:#c8c4b8;">{{ t.content | strip_html | truncate: 80 }}</p>
+    <p class="definition" style="color:#c8c4b8;">{{ t.summary | default: t.content | strip_html | truncate: 80 }}</p>
   </div>
   {% endfor %}
 

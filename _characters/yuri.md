@@ -2,7 +2,7 @@
 title: "ユーリ"
 slug: yuri
 works: [nemophila-reversi]
-faction: ["ネ", "モ", "フ", "ィ", "ラ"]
+faction: ["ネモフィラ"]
 summary: "ソリシアと同じ孤児院で育った人物。負傷を経て、現在は事務や書類仕事を担っている。"
 related_characters: [solicia, benno]
 related_terms: [tenshitaisakuka]

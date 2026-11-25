@@ -1,0 +1,10 @@
+{% comment %}
+  画像の出典キャプション。外部の画像素材を使う時だけ、画像の直後に置く。
+  使い方:
+  {% include credit.html title="作品名" author="作者" year="1890" source="Wikimedia Commons" url="https://..." license="Public Domain" %}
+  出典とライセンスは assets/images/CREDITS.md にも必ず記録すること。
+{% endcomment %}
+<p class="credit">
+  {{ include.title }}{% if include.author %} / {{ include.author }}{% endif %}{% if include.year %} ({{ include.year }}){% endif %}
+  — {% if include.url %}<a href="{{ include.url }}" rel="noopener">{{ include.source }}</a>{% else %}{{ include.source }}{% endif %}{% if include.license %}, {{ include.license }}{% endif %}
+</p>

@@ -16,7 +16,8 @@ permalink: /terms/
       {% assign scoped_work = site.works | where: "slug", t.scope | first %}
       <span class="scope-tag">{% if scoped_work %}{{ scoped_work.title }}限定{% else %}{{ t.scope }}{% endif %}</span>
     {% endif %}
-    <p class="definition">{{ t.content | strip_html | truncate: 80 }}</p>
+    {% if t.kind == "setting" %}<span class="scope-tag">公開設定資料</span>{% endif %}
+    <p class="definition">{{ t.summary | default: t.content | strip_html | truncate: 80 }}</p>
   </div>
   {% endfor %}
 </div>
